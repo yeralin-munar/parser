@@ -25,5 +25,12 @@ public class Part implements Composite{
         return parts.get(index);
     }
 
-
+    @Override
+    public String toString(){
+        String text = "";
+        for (Composite part: parts){
+            text += part.toString();
+        }
+        return text;
+    }
 }

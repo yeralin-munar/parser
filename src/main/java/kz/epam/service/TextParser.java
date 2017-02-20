@@ -13,10 +13,10 @@ import java.util.regex.Pattern;
  * Created by munar on 2/20/17.
  */
 public class TextParser {
-    private static String REGEX_PARAGRAPH = "(.*[\n]{1,2}|.*)";
-    private static String REGEX_SENTENCE = "([\\w\\s\\d[\\W&&[^.!?]]]+[.!?]+[\\s]?[\n]?)";
-    private static String REGEX_SENTENCE_PART = "([А-Яа-я]+[- \\s\\W\\d]+[\n]?)";
-    private static String REGEX_WORD_SYMBOLS = "([А-Яа-я]+|[- \\W\\d]+([\n]?))";
+    private static String REGEX_PARAGRAPH = "(.*[^\\t]+|.*)";
+    private static String REGEX_SENTENCE = "([\\w\\s\\d[\\W&&[^.!?]]]+[.!?]+[^\\t]+)";
+    private static String REGEX_SENTENCE_PART = "([А-Яа-я]+[- \\s\\W\\d]+[^\\t]+)";
+    //private static String REGEX_WORD_SYMBOLS = "([А-Яа-я]+|[- \\W\\d]+([^\\t]+?))";
 
     public TextParser(){
 
@@ -95,12 +95,13 @@ public class TextParser {
         Matcher sentencePartMatcher = sentencePartPattern.matcher(sentenceText);
 
         while (sentencePartMatcher.find()){
-            sentencePart = parseWordAndSymbols(sentencePart, sentencePartMatcher.group(1));
+            sentencePart = parseSymbols(sentencePart, sentencePartMatcher.group(1));
             sentence.addElement(sentencePart);
         }
         return sentence;
     }
 
+    /*
     private Part parseWordAndSymbols(Part sentencePart, String sentencePartText){
         Part word = new Part();
         Part symbols = new Part();
@@ -117,7 +118,7 @@ public class TextParser {
         sentencePart.addElement(symbols);
 
         return sentencePart;
-    }
+    }*/
 
     private Part parseSymbols(Part word, String wordText){
         for (char ch: wordText.toCharArray()){
