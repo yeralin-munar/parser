@@ -1,16 +1,27 @@
 package kz.epam.main;
 
-import kz.epam.entity.Entity;
-import sun.jvm.hotspot.debugger.cdbg.Sym;
-
 /**
  * Created by munar on 2/10/17.
  */
-public class Symbol extends Entity {
+public class Symbol implements Composite {
     private char symbol;
+
+    public Symbol(){};
 
     public Symbol(char symbol){
         this.symbol = symbol;
+    }
+
+    public void addElement(Composite composite) {
+
+    }
+
+    public void removeElement(Composite composite) {
+
+    }
+
+    public Composite getElement(int index) {
+        return null;
     }
 
     @Override
