@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by munar on 2/20/17.
+ * @author Yeralin Munar
+ * date: 2/20/17
  */
 public class Part implements Composite{
     private List<Composite> parts = new ArrayList<Composite>();
@@ -29,7 +30,7 @@ public class Part implements Composite{
     public String toString(){
         String text = "";
         for (Composite part: parts){
-            text += part.toString();
+            text += part;
         }
         return text;
     }
